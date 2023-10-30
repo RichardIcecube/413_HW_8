@@ -126,7 +126,9 @@ public class DeltaDebugger {
       output = dd(changes, args[0]);
       //loop to print results. Alternatively, we can output the results as they are computed.
         for(int i = 0; i < changes.size(); i++){
-            System.out.println(changes.get(i));
+            if(changes.get(i).charAt(0) == '@') {
+                System.out.println(changes.get(i));
+            }
         }
         System.out.println("");
         for(int i = 0; i < output.size(); i++){
