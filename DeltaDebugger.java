@@ -120,9 +120,18 @@ public class DeltaDebugger {
   public static void main(String[] args) {
     // for testing or driver code
     List<String> output;
+    List<String> changes;
     if(args.length > 1) {
-      output = dd(split(args[0], args[1]), args[0]);
+      changes = split(args[0], args[1]);
+      output = dd(changes, args[0]);
       //loop to print results. Alternatively, we can output the results as they are computed.
+        for(int i = 0; i < changes.size(); i++){
+            System.out.println(changes.get(i));
+        }
+        System.out.println("");
+        for(int i = 0; i < output.size(); i++){
+            System.out.println(output.get(i));
+        }
     }
     else System.out.println("Not enough file names provided");
   }
