@@ -9,27 +9,27 @@ public class DeltaDebugger {
   static final int UNRESOLVED = 2;
 
 
-  public static List<Integer> dd(List<Integer> changes) {
-    return ddRecursive(changes, new ArrayList<>());
+  public static List<String> dd(List<String> changes, String fileName) {
+    return ddRecursive(changes, new ArrayList<>(), fileName);
   }
-  public static List<Integer> ddRecursive(List<Integer> changes, List<Integer> remaining) {
+  public static List<String> ddRecursive(List<String> changes, List<String> remaining, String fileName) {
     int n = changes.size();
     if (n == 1) {
       return changes;
     }
 
-    List<Integer> c1 = new ArrayList<>();
-    List<Integer> c2 = new ArrayList<>();
+    List<String> c1 = new ArrayList<>();
+    List<String> c2 = new ArrayList<>();
     divideChanges(changes, c1, c2);
 
-    if (test(join(c1, remaining)) == FAIL) {
-      return ddRecursive(c1, remaining);
-    } else if (test(join(c2, remaining)) == FAIL) {
-      return ddRecursive(c2, remaining);
+    if (test(join(c1, remaining), fileName) == FAIL) {
+      return ddRecursive(c1, remaining, fileName);
+    } else if (test(join(c2, remaining), fileName) == FAIL) {
+      return ddRecursive(c2, remaining, fileName);
     } else {
-      List<Integer> result = new ArrayList<>();
-      result.addAll(ddRecursive(c1, join(c2, remaining)));
-      result.addAll(ddRecursive(c2, join(c1, remaining)));
+      List<String> result = new ArrayList<>();
+      result.addAll(ddRecursive(c1, join(c2, remaining), fileName));
+      result.addAll(ddRecursive(c2, join(c1, remaining), fileName));
       return result;
     }
   }
@@ -61,7 +61,7 @@ public class DeltaDebugger {
   }
 
   //new 
-  public static void divideChanges(List<Integer> changes, List<Integer> c1, List<Integer> c2) {
+  public static void divideChanges(List<String> changes, List<String> c1, List<String> c2) {
     int halfSize = changes.size() / 2;
     for (int i = 0; i < changes.size(); i++) {
         if (i < halfSize) {
@@ -72,27 +72,14 @@ public class DeltaDebugger {
     }
   }
 
-//  public static List<Integer> split(List<Integer> changes, List<Integer> c1, List<Integer> c2) {
-//    Random rand = new Random();
-//    for (Integer change : changes) {
-//      if (rand.nextBoolean()) {
-//        c1.add(change);
-//      } else {
-//        c2.add(change);
-//      }
-//    }
-//    return c1;
-//  }
-  public static List<Integer> join(List<Integer> l1, List<Integer> l2) {
-    List<Integer> joined = new ArrayList<>(l1);
+  public static List<String> join(List<String> l1, List<String> l2) {
+    List<String> joined = new ArrayList<>(l1);
     joined.addAll(l2);
     return joined;
   }
 
   //runs file name to see if it passes, fails, or returns unresolved.
-  // Not quite sure what would constitute unresolved atm
-  public static int test(List<Integer> changes) {
-    String fileName = "YourFileNameHere.java"; // Replace this with a method to get the file name based on changes or input
+  public static int test(List<String> changes, String fileName) {
     int result = compileAndRun(fileName);
     return result;
   }
@@ -132,16 +119,12 @@ public class DeltaDebugger {
 
   public static void main(String[] args) {
     // for testing or driver code
+    List<String> output;
+    if(args.length > 1) {
+      output = dd(split(args[0], args[1]), args[0]);
+      //loop to print results. Alternatively, we can output the results as they are computed.
+    }
+    else System.out.println("Not enough file names provided");
   }
-
-  //  public static int test(List<Integer> changes) {
-//    if (changes.isEmpty()) {
-//      return PASS;
-//    } else if (changes.containsAll(changes)) {
-//      return FAIL;
-//    } else {
-//      return UNRESOLVED;
-//    }
-//  }
 
 }
