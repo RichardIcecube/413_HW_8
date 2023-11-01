@@ -5,11 +5,11 @@ import shutil
 fileName1 = input("Enter the first file name: ")
 fileName2 = input("Enter the second file name: ")
 
-os.system(f"diff -U 0 old/{fileName1} new/{fileName2} > differences.txt")
+os.system(f"diff -U 0 firstv/{fileName1} secondv/{fileName2} > differences.txt")
 
 os.makedirs('changesets', exist_ok=True)
 
-shutil.copy(f'old/{fileName1}', f"old/{fileName1.split('.')[0]}_orig.{fileName1.split('.')[1]}")
+shutil.copy(f'firstv/{fileName1}', "firstv/original.java")
 
 with open('differences.txt', 'r') as f:
     lines = f.readlines()
