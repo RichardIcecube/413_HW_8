@@ -1,9 +1,0 @@
---- old/file1v1.java	Wed Nov 01 13:17:41 2023
-+++ new/file1v2.java	Mon Oct 30 14:14:08 2023
-@@ -30 +36,5 @@
--    return 0;
-+    if (type.equals("addsubsquare")) {
-+      return (((a + b) * (a * b)) - ((a - b) * (a - b)));
-+    }
-+
-+    return 1;
