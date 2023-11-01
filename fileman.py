@@ -2,18 +2,14 @@ import os
 import shutil
 
 
-fileName1 = input("Enter the first filename: ")
-fileName2 = input("Enter the second filename: ")
+fileName1 = input("Enter the first file name: ")
+fileName2 = input("Enter the second file name: ")
 
-os.system(f"diff -U 0 {fileName1} {fileName2} > differences.txt")
+os.system(f"diff -U 0 old/{fileName1} new/{fileName2} > differences.txt")
 
-os.makedirs('old', exist_ok=True)
-os.makedirs('new', exist_ok=True)
 os.makedirs('changesets', exist_ok=True)
 
-shutil.copy(fileName1, 'old/')
-shutil.copy('old/file1v1.java', 'old/file1v1_orig.java')
-shutil.copy(fileName2, 'new/')
+shutil.copy(f'old/{fileName1}', f"old/{fileName1.split('.')[0]}_orig.{fileName1.split('.')[1]}")
 
 with open('differences.txt', 'r') as f:
     lines = f.readlines()
@@ -50,7 +46,7 @@ for line in lines:
             changeset.append(line)
             isOpen = True
             
-    if line.startswith('+ ') or line.startswith('- '):
+    if (line.startswith('+') or line.startswith('-')) and not (line.startswith('+++') or line.startswith('---')):
         changeset.append(line)
 
 # Don't forget the last changeset

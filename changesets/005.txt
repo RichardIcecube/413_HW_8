@@ -1,0 +1,4 @@
+--- old/file1v1.java	Wed Nov 01 13:17:41 2023
++++ new/file1v2.java	Mon Oct 30 14:14:08 2023
+@@ -16 +18,0 @@
+-
