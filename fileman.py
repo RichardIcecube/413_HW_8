@@ -24,6 +24,10 @@ file1 = ''
 file2 = ''
 isOpen = False
 for line in lines:
+    if line.startswith('@@'):
+        changeset_num += 1
+
+for line in lines:
     if line.startswith('---'):
         file1 = line
     if line.startswith('+++'):
@@ -31,9 +35,13 @@ for line in lines:
     if line.startswith('@@'):
         if isOpen:
            if changeset:  # If there's already a changeset, write it to a file
-                with open(f'changesets/changeset{changeset_num}.txt', 'w') as f:
-                    f.write(''.join(changeset))
-                changeset_num += 1
+                if changeset_num > 10:
+                    with open(f'changesets/0{changeset_num - 1}.txt', 'w') as f:
+                        f.write(''.join(changeset))
+                else: 
+                    with open(f'changesets/00{changeset_num - 1}.txt', 'w') as f:
+                        f.write(''.join(changeset))
+                changeset_num -= 1
                 changeset = []
                 isOpen = False 
         if not isOpen:
@@ -47,5 +55,5 @@ for line in lines:
 
 # Don't forget the last changeset
 if changeset:
-    with open(f'changesets/changeset{changeset_num}.txt', 'w') as f:
+    with open(f'changesets/00{changeset_num - 1}.txt', 'w') as f:
         f.write(''.join(changeset))
