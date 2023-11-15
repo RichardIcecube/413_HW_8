@@ -9,14 +9,12 @@ def run_command(command):
 def union(first: list, second: list):
     unique = set()
     
-    print("Union First: {}".format(first))
-    print("Union Second: {}".format(second))
-    print(second)
+    
     unique.update(first)
+    print("Union First: {}".format(list(unique)))
     unique.update(second)
+    print("Union Second: {}".format(list(unique)))
     
-    
-    print("Union Output: {}".format(list(unique).sort()))
     return list(unique).sort()
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
