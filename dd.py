@@ -59,6 +59,8 @@ def ddrecursive(changes: list, recursive: list):
     split2.sort()
     
     #test each half of changes for buggs
+    print(split1)
+    print(split2)
     test1 = test(union(split1, recursive))
     if test1 == 1:
         return ddrecursive(split1, recursive)
@@ -99,7 +101,6 @@ if __name__ == '__main__':
         change_set_list = list()
         if test['change_set'] is not None:
             for c in test['change_set']:
-                print("HI: {}".format(c))
                 change_set_list.append(c[:3])
 
         status = 'PASS'
