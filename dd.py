@@ -47,7 +47,7 @@ def ddrecursive(changes: list, recursive: list):
     if len(changes) == 1: return changes
     
     #split array in half as specified by algorithm
-    middle = len(changes) / 2
+    middle = len(changes) // 2
     split1 = changes[:middle]
     split2 = changes[middle:]
     
