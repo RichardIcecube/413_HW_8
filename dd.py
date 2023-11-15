@@ -103,6 +103,7 @@ if __name__ == '__main__':
         change_set_list = list()
         if test['change_set'] is not None:
             for c in test['change_set']:
+                print("HI: {}".format(c))
                 change_set_list.append(c[:3])
 
         status = 'PASS'
