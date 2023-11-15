@@ -29,8 +29,9 @@ def test(change_set: list):
 
     run_command('cp firstv/original.java firstv/file1v1.java')
 
-    for c in change_set:
-        run_command('patch -p0 -i changefiles/{} < firstv/file1v1.java'.format(c))
+    if change_set is not None: 
+        for c in change_set:
+            run_command('patch -p0 -i changefiles/{} < firstv/file1v1.java'.format(c))
 
     run_command('javac firstv/file1v1.java && mkdir firstv/test_case && mv firstv/file1v1.class firstv/test_case/file1v1.class')
     p = run_command('cd firstv && java test_case/file1v1 5 0 division')
