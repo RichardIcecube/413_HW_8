@@ -7,7 +7,7 @@ fileName2 = input("Enter the second file name: ")
 
 os.system(f"diff -U 0 firstv/{fileName1} secondv/{fileName2} > differences.txt")
 
-os.makedirs('changesets', exist_ok=True)
+os.makedirs('changefiles', exist_ok=True)
 
 shutil.copy(f'firstv/{fileName1}', "firstv/original.java")
 
@@ -32,10 +32,10 @@ for line in lines:
         if isOpen:
            if changeset:  # If there's already a changeset, write it to a file
                 if changeset_num > 10:
-                    with open(f'changesets/0{changeset_num - 1}.txt', 'w') as f:
+                    with open(f'changefiles/0{changeset_num - 1}.txt', 'w') as f:
                         f.write(''.join(changeset))
                 else: 
-                    with open(f'changesets/00{changeset_num - 1}.txt', 'w') as f:
+                    with open(f'changefiles/00{changeset_num - 1}.txt', 'w') as f:
                         f.write(''.join(changeset))
                 changeset_num -= 1
                 changeset = []
@@ -51,5 +51,5 @@ for line in lines:
 
 # Don't forget the last changeset
 if changeset:
-    with open(f'changesets/00{changeset_num - 1}.txt', 'w') as f:
+    with open(f'changefiles/00{changeset_num - 1}.txt', 'w') as f:
         f.write(''.join(changeset))
