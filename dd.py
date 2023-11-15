@@ -83,6 +83,8 @@ if __name__ == '__main__':
     for change in changelist:
         changes.append(change)
     
+    changes.sort()
+    
     results = ddrecursive(changes, list())
     
     #I believe Quang actually wrote this portion of the code as well, so I will be repurposing it 
