@@ -44,6 +44,7 @@ def test(change_set: list):
 
 def ddrecursive(changes: list, recursive: list):
     #returns if change list contains only one change
+    print(".")
     if len(changes) == 1: return changes
     
     #split array in half as specified by algorithm
