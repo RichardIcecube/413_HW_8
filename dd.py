@@ -9,13 +9,12 @@ def run_command(command):
 def union(first: list, second: list):
     unique = set()
     
-    
     unique.update(first)
     print("Union First: {}".format(list(unique)))
     unique.update(second)
     print("Union Second: {}".format(list(unique)))
     
-    return list(unique).sort()
+    return list(unique)
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
 def test(change_set: list):
