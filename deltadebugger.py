@@ -138,3 +138,7 @@ if __name__ == '__main__':
     delta_debugging.print_results(change_set)
 
     print('Changes where bugs occurred: [{}]'.format(delta_debugging.extract_number_from_patch_file(res[0])))
+
+
+
+
