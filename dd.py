@@ -80,10 +80,10 @@ if __name__ == '__main__':
     
     changelist = os.listdir("./changefiles")
     
-    results = ddrecursive(changes, list())
-    
     for change in changelist:
         changes.append(change)
+    
+    results = ddrecursive(changes, list())
     
     #I believe Quang actually wrote this portion of the code as well, so I will be repurposing it 
     for change in changes:
