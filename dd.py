@@ -9,14 +9,20 @@ def run_command(command):
 def union(first: list, second: list):
     unique = set()
     
+    print("Union First: {}".format(first))
+    print("Union Second: {}".format(second))
+    print(second)
     unique.update(first)
     unique.update(second)
     
+    
+    print("Union Output: {}".format(list(unique).sort()))
     return list(unique).sort()
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
 def test(change_set: list):
 
+    print("Test: {}".format(change_set))
     if os.path.exists('firstv/file1v1.java'):
         os.remove('firstv/file1v1.java')
 
@@ -34,8 +40,7 @@ def test(change_set: list):
 
     run_command('javac firstv/file1v1.java && mkdir firstv/test_case && mv firstv/file1v1.class firstv/test_case/file1v1.class')
     p = run_command('cd firstv && java test_case/file1v1 5 0 division')
-    print("HI")
-    print(change_set)
+    
     tests.append({'change_set': change_set, 'status': p.returncode})
 
     if p.returncode == 0:
