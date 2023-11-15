@@ -16,10 +16,9 @@ def union(first: list, second: list):
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
 def test(change_set: list):
-    file_path = 'firstv/file1v1.java'
 
-    if os.path.exists(file_path):
-        os.remove(file_path)
+    if os.path.exists('firstv/file1v1.java'):
+        os.remove('firstv/file1v1.java')
 
     if os.path.exists('firstv/test_case/file1v1.class'):
         os.remove('firstv/test_case/file1v1.class')
@@ -37,7 +36,7 @@ def test(change_set: list):
     p = run_command('cd firstv && java test_case/file1v1 5 0 division')
 
     tests.append({'change_set': change_set, 'status': p.returncode})
-    print(p.returncode)
+
     if p.returncode == 0:
         return 0 #Pass
     elif p.returncode == 1:
@@ -53,9 +52,12 @@ def ddrecursive(changes: list, recursive: list):
     
     #split array in half as specified by algorithm
     middle = len(changes) // 2
+    print("Changes length: {}".format(middle))
     split1 = changes[:middle]
+    print("Split1 length: {}".format(len(split1)))
     split1.sort()
     split2 = changes[middle:]
+    print("Split2 length: {}".format(len(split2)))
     split2.sort()
     
     #test each half of changes for buggs
