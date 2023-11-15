@@ -34,7 +34,7 @@ def test(change_set: list):
 
     run_command('javac firstv/file1v1.java && mkdir firstv/test_case && mv firstv/file1v1.class firstv/test_case/file1v1.class')
     p = run_command('cd firstv && java test_case/file1v1 5 0 division')
-
+    print(change_set)
     tests.append({'change_set': change_set, 'status': p.returncode})
 
     if p.returncode == 0:
@@ -52,12 +52,9 @@ def ddrecursive(changes: list, recursive: list):
     
     #split array in half as specified by algorithm
     middle = len(changes) // 2
-    print("Changes length: {}".format(middle))
     split1 = changes[:middle]
-    print("Split1 length: {}".format(len(split1)))
     split1.sort()
     split2 = changes[middle:]
-    print("Split2 length: {}".format(len(split2)))
     split2.sort()
     
     #test each half of changes for buggs
