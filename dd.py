@@ -61,11 +61,9 @@ def ddrecursive(changes: list, recursive: list):
     #test each half of changes for buggs
     test1 = test(union(split1, recursive))
     if test1 == 1:
-        print("test1 = fail")
         return ddrecursive(split1, recursive)
     test2 = test(union(split2, recursive))
     if test2 == 1:
-        print("test2 = fail")
         return ddrecursive(split2, recursive)
     
     #No failures in each half, requires further subdivision
