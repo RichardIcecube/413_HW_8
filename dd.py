@@ -13,7 +13,6 @@ def union(first: list, second: list):
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
 def test(change_set: list):
-    print("testing")
     file_path = 'firstv/file1v1.java'
 
     if os.path.exists(file_path):
@@ -34,7 +33,7 @@ def test(change_set: list):
     p = run_command('cd firstv && java test_case/file1v1 5 0 division')
 
     tests.append({'change_set': change_set, 'status': p.returncode})
-
+    print(p.returncode)
     if p.returncode == 0:
         return 0 #Pass
     elif p.returncode == 1:
