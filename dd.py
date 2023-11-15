@@ -7,9 +7,12 @@ def run_command(command):
     return subprocess.run(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def union(first: list, second: list):
-    first.extend(second)
-    first.sort()
-    return first
+    unique = set()
+    
+    unique.update(first)
+    unique.update(second)
+    
+    return list(unique).sort()
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
 def test(change_set: list):
@@ -57,9 +60,11 @@ def ddrecursive(changes: list, recursive: list):
     #test each half of changes for buggs
     test1 = test(union(split1, recursive))
     if test1 == 1:
+        print("test1 = fail")
         return ddrecursive(split1, recursive)
     test2 = test(union(split2, recursive))
     if test2 == 1:
+        print("test2 = fail")
         return ddrecursive(split2, recursive)
     
     #No failures in each half, requires further subdivision
