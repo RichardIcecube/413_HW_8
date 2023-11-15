@@ -13,6 +13,7 @@ def union(first: list, second: list):
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
 def test(change_set: list):
+    print("testing")
     file_path = 'firstv/file1v1.java'
 
     if os.path.exists(file_path):
