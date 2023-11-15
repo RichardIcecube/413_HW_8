@@ -101,8 +101,9 @@ if __name__ == '__main__':
     idx = 1
     for test in tests:
         change_set_list = list()
-        for c in test['change_set']:
-            change_set_list.append(c[:3])
+        if test['change_set'] is not None:
+            for c in test['change_set']:
+                change_set_list.append(c[:3])
 
         status = 'PASS'
         if test['status'] == 1:
