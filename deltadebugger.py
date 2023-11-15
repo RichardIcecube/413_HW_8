@@ -54,7 +54,7 @@ class DeltaDebugging:
         run_shell('cp firstv/original.java firstv/file1v1.java')
 
         for c in change_set:
-            run_shell('patch -p0 -i changesets/{} < firstv/file1v1.java'.format(c))
+            run_shell('patch -p0 -i changefiles/{} < firstv/file1v1.java'.format(c))
 
         run_shell('javac firstv/file1v1.java && mkdir firstv/test_case && mv firstv/file1v1.class firstv/test_case/file1v1.class')
         p = run_shell('cd firstv && java test_case/file1v1 5 0 division')
@@ -95,7 +95,7 @@ class DeltaDebugging:
     def print_results(self, cs: list):
         print('Delta-debugging Project')
         for c in cs:
-            file_path = 'changesets/{}'.format(c)
+            file_path = 'changefiles/{}'.format(c)
             try:
                 with open(file_path, 'r') as f:
                     content = f.read()
@@ -124,7 +124,7 @@ class DeltaDebugging:
 if __name__ == '__main__':
     change_set = list()
 
-    file_list = os.listdir("./changesets")
+    file_list = os.listdir("./changefiles")
 
     # create the initial change set
     for file in file_list:
