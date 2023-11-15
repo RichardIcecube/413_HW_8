@@ -8,18 +8,12 @@ def run_command(command):
 
 def union(first: list, second: list):
     unique = set()
-    
     unique.update(first)
-    print("Union First: {}".format(list(unique)))
     unique.update(second)
-    print("Union Second: {}".format(list(unique)))
-    
     return list(unique)
 
 #I believe Quang actually wrote this code, so I will leave it relatively unchanged
 def test(change_set: list):
-
-    print("Test: {}".format(change_set))
     if os.path.exists('firstv/file1v1.java'):
         os.remove('firstv/file1v1.java')
 
@@ -61,8 +55,6 @@ def ddrecursive(changes: list, recursive: list):
     split2.sort()
     
     #test each half of changes for buggs
-    print(split1)
-    print(split2)
     test1 = test(union(split1, recursive))
     if test1 == 1:
         return ddrecursive(split1, recursive)
